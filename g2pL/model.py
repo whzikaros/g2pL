@@ -72,13 +72,13 @@ class BertLayer(nn.Module):
     BertOutput: 残差，norm
     参考博客：https://blog.csdn.net/myboyliu2007/article/details/115611660
     """
-    def __init__(self, config, has_word_attn=False, seq_len=None): #has_word_attn参数zj
+    def __init__(self, config, has_word_attn=False, seq_len=None): 
         super().__init__()
         self.chunk_size_feed_forward = config.chunk_size_feed_forward
         self.seq_len_dim = 1
-        self.attention = BertAttention(config) #transformer核心的自注意力机制
+        self.attention = BertAttention(config) 
         self.is_decoder = config.is_decoder
-        self.add_cross_attention = config.add_cross_attention #3.4.0新加，设置文件中没有则为false
+        self.add_cross_attention = config.add_cross_attention 
         if self.add_cross_attention:
             assert self.is_decoder, f"{self} should be used as a decoder model if cross attention is added"
             self.crossattention = BertAttention(config)
@@ -96,7 +96,6 @@ class BertLayer(nn.Module):
             self.attn_W.data.normal_(mean=0.0, std=config.initializer_range)
             self.fuse_layernorm = nn.LayerNorm(config.hidden_size, eps=config.layer_norm_eps)
             
-            #对所有输出的隐藏层使用全连接层转换成一个隐藏层
             if seq_len:
                 # 使用1D卷积
                 self.conv1=nn.Conv1d(in_channels=seq_len,out_channels=1,kernel_size=1)
