@@ -1,0 +1,9 @@
+include g2pL/polyphone_dic.json
+include g2pL/tone2totone1.json
+include g2pL/pinyin_dic.json
+include g2pL/class2idx.pkl
+include g2pL/matched_word.txt
+include g2pL/bert_config/*
+include g2pL/lexicon_tree.pkl
+include g2pL/best_model.pt
+include g2pL/saved_word_embedding_1000000.pkl
