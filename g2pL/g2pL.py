@@ -23,6 +23,8 @@ embedding_url="https://huggingface.co/Megumism/g2pL/resolve/main/saved_word_embe
 
 dir=os.path.dirname(os.path.abspath(__file__))
 
+file_dir=os.path.join(os.path.dirname(dir),"g2pL_files")
+
 import collections
 
 class TrieNode:
@@ -184,7 +186,7 @@ class G2PL:
             self.class2idx = pickle.load(f)
         self.num_classes = len(self.class2idx)
 
-        self.embedding_file=os.path.join(dir,"saved_word_embedding_1000000.pkl")
+        self.embedding_file=os.path.join(file_dir,"saved_word_embedding_1000000.pkl")
         #self.embedding_file="/media/data2/wanhongzhi/my_polyphone_inference/data/embedding/saved_word_embedding_1000000.pkl"
         if not os.path.exists(self.embedding_file):
             download_model(embedding_url,self.embedding_file)
@@ -196,7 +198,7 @@ class G2PL:
         with open(os.path.join(dir,"matched_word.txt"),'r') as f:
             matched_words=f.readlines()
             
-        self.word_vocab_file=os.path.join(dir,"tencent_vocab.txt")
+        self.word_vocab_file=os.path.join(file_dir,"tencent_vocab.txt")
         #self.word_vocab_file="/media/data2/wanhongzhi/my_polyphone_inference/data/vocab/tencent_vocab.txt"
         if not os.path.exists(self.word_vocab_file):
             download_model(word_vocab_url,self.word_vocab_file)
@@ -207,7 +209,7 @@ class G2PL:
     
         self.word_vocab = ItemVocabArray(items_array=matched_words, is_word=True, has_default=False, unk_num=5)   
          
-        self.inference_model=os.path.join(dir,"best_model.pt")
+        self.inference_model=os.path.join(file_dir,"best_model.pt")
         #self.inference_model="/media/data2/wanhongzhi/my_polyphone_inference/g2pL_files/best_model.pt"
         if not os.path.exists(self.inference_model):
             download_model(model_url,self.inference_model)  
