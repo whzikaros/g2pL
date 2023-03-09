@@ -13,7 +13,7 @@ pip install -r requirements.txt
 ```
 
 ## Download
-[点击此处](https://github.com/whzikaros/g2pL/releases/tag/v0.0.1)下载模型及词向量等相关文件，并自行创建g2pL_files，将这些文件放入g2pL_files目录中。
+[点击此处](https://github.com/whzikaros/g2pL/releases/tag/v0.0.1)下载模型及词向量等相关文件，并自行创建与g2pL同级目录的g2pL_files文件夹，将这些文件放入g2pL_files目录中。
 
 ## Usage
 You can set the tone style, the default tone style is 2.
